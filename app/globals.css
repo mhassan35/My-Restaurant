@@ -7,7 +7,10 @@
 html {
   scroll-behavior: smooth;
 }
-
+body[data-scroll-locked] {
+  overflow: visible !important;
+  margin-right: 0 !important;
+}
 /* Premium restaurant experience color scheme */
 :root {
   --background: oklch(0.99 0 0);
@@ -108,10 +111,6 @@ html {
     @apply bg-background text-foreground;
   }
   /* Prevent body scroll lock when Radix UI Select is open */
-  body[data-scroll-locked] {
-    overflow: visible !important;
-    padding-right: 0 !important;
-  }
 }
 
 /* Enhanced smooth animations and transitions */
