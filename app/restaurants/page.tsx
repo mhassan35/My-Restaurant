@@ -3,18 +3,13 @@ import { useState } from "react"
 import RestaurantGrid from "@/components/restaurant-grid"
 import { Search, Filter } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { buttonData, filters } from "@/lib/api/types"
 
 export default function RestaurantsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
-  const filters = [
-    { id: "rating", label: "Highest Rated" },
-    { id: "delivery", label: "Fast Delivery" },
-    { id: "fee", label: "Low Delivery Fee" },
-    { id: "popular", label: "Popular" }
-  ]
 
   return (
     <main className="min-h-screen bg-background">
@@ -94,14 +89,7 @@ export default function RestaurantsPage() {
       <section className="bg-background py-6 border-b border-border sticky top-40 z-30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {[
-              { value: "all", label: "All" },
-              { value: "italian", label: "Italian" },
-              { value: "asian", label: "Asian" },
-              { value: "american", label: "American" },
-              { value: "seafood", label: "Seafood" },
-              { value: "dessert", label: "Dessert" }
-            ].map((cat) => (
+            {buttonData.map((cat) => (
               <button
                 key={cat.value}
                 onClick={() => setSelectedCategory(cat.value)}

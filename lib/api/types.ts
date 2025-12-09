@@ -85,3 +85,17 @@ export interface PaginationMeta {
     is_default?: boolean
   }
   
+  export const filters = [
+    { id: "rating", label: "Highest Rated" },
+    { id: "delivery", label: "Fast Delivery" },
+    { id: "fee", label: "Low Delivery Fee" },
+    { id: "popular", label: "Popular" }
+  ]
+  export const buttonData = [
+    { value: "all", label: "All" },
+    { value: "italian", label: "Italian" },
+    { value: "asian", label: "Asian" },
+    { value: "american", label: "American" },
+    { value: "seafood", label: "Seafood" },
+    { value: "dessert", label: "Dessert" }
+  ]

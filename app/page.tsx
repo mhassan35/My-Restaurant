@@ -3,6 +3,7 @@
 import { useState } from "react"
 import RestaurantGrid from "@/components/restaurant-grid"
 import HeroSection from "@/components/hero-section"
+import { buttonData } from "@/lib/api/types"
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("all")
@@ -14,14 +15,7 @@ export default function Home() {
         <section className="sticky top-20 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
           <div className="max-w-7xl mx-auto px-4 py-6">
             <div className="flex gap-3 overflow-x-auto pb-2">
-              {[
-                { value: "all", label: "All Restaurants" },
-                { value: "italian", label: "Italian" },
-                { value: "asian", label: "Asian" },
-                { value: "american", label: "American" },
-                { value: "seafood", label: "Seafood" },
-                { value: "dessert", label: "Dessert" },
-              ].map((cat) => (
+              {buttonData.map((cat) => (
                 <button
                   key={cat.value}
                   onClick={() => setSelectedCategory(cat.value)}
@@ -38,7 +32,7 @@ export default function Home() {
           </div>
         </section>
         {/* Restaurants Grid */}
-      <RestaurantGrid category={selectedCategory} />
+      <RestaurantGrid category={selectedCategory} search={""} activeFilter={null} />
     </main>
   )
 }
