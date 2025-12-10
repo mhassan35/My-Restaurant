@@ -32,25 +32,28 @@ export default function RestaurantPage() {
     return () => clearTimeout(timer)
   }, [params.id])
 
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-background">
-        <Skeleton className="h-96 w-full" />
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[...Array(8)].map((_, i) => (
-              <Skeleton key={i} className="h-64 rounded-xl" />
-            ))}
-          </div>
-        </div>
-      </main>
-    )
-  }
+  const isLoading = loading
+  const hasData = Boolean(restaurant)
 
   return (
-      <main className="min-h-screen bg-background">
-        <RestaurantHeader restaurant={restaurant} />
-        <MenuGrid restaurantId={params.id as string} />
-      </main>
+    <main className="min-h-screen bg-background">
+      {isLoading || !hasData ? (
+        <div>
+          <Skeleton className="h-96 w-full" />
+          <div className="max-w-7xl mx-auto px-4 py-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {[...Array(8)].map((_, i) => (
+                <Skeleton key={i} className="h-64 rounded-xl" />
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <RestaurantHeader restaurant={restaurant} />
+          <MenuGrid restaurantId={params.id as string} />
+        </div>
+      )}
+    </main>
   )
 }

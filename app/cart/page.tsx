@@ -13,21 +13,17 @@ export default function CartPage() {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
-    return null
-  }
+  const isEmpty = items.length === 0
 
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 py-8 sm:py-12">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-8 sm:mb-12">Shopping Cart</h1>
-        {items.length === 0 ? (
+        {!mounted ? null : isEmpty ? (
           <div className="flex flex-col items-center justify-center py-16 sm:py-24">
             <ShoppingCart className="w-12 h-12 sm:w-16 sm:h-16 text-muted-foreground mb-4 opacity-50" />
             <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">Your cart is empty</h2>
-            <p className="text-muted-foreground mb-6 sm:mb-8 text-sm sm:text-base">
-              Add some delicious items to get started!
-            </p>
+            <p className="text-muted-foreground mb-6 sm:mb-8 text-sm sm:text-base">Add some delicious items to get started!</p>
             <Link href="/">
               <button className="px-6 sm:px-8 py-2.5 sm:py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-smooth active:scale-95 text-sm sm:text-base">
                 Continue Shopping
@@ -36,7 +32,6 @@ export default function CartPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
-            {/* Items List */}
             <div className="lg:col-span-2 space-y-3 sm:space-y-4">
               {items.map((item) => (
                 <div
@@ -81,9 +76,8 @@ export default function CartPage() {
                     </button>
                   </div>
                 </div>
-                ))}
-              </div>
-            {/* Summary */}
+              ))}
+            </div>
             <CartSummary total={total} itemsCount={items.length} />
           </div>
         )}
