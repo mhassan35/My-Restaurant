@@ -3,7 +3,7 @@ import { useState } from "react"
 import RestaurantGrid from "@/components/restaurant-grid"
 import { Search, Filter } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { buttonData, filters } from "@/lib/api/types"
+import { buttonData, filters } from "@/lib/mockData"
 
 export default function RestaurantsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all")

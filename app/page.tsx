@@ -3,7 +3,7 @@
 import { useState } from "react"
 import RestaurantGrid from "@/components/restaurant-grid"
 import HeroSection from "@/components/hero-section"
-import { buttonData } from "@/lib/api/types"
+import { buttonData } from "@/lib/mockData"
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("all")
