@@ -26,7 +26,7 @@ export default function RestaurantHeader({ restaurant }: RestaurantHeaderProps) 
           alt={restaurant.name}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent"></div>
       </div>
 
       {/* Info Section */}
@@ -74,7 +74,7 @@ export default function RestaurantHeader({ restaurant }: RestaurantHeaderProps) 
             </div>
 
             {/* Quick Stats */}
-            <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6 border border-primary/10">
+            <div className="bg-linear-to-br from-primary/5 to-secondary/5 rounded-xl p-6 border border-primary/10">
               <h3 className="font-bold text-foreground mb-4">Quick Info</h3>
               <div className="space-y-3">
                 <div>
