@@ -1,3 +1,27 @@
+export interface RestaurantsData {
+  id: string
+  name: string
+  image: string
+  rating: number
+  reviews: number
+  cuisine: string
+  deliveryTime: string
+  deliveryFee: number
+  minOrder: number
+  category: string
+  featured: boolean
+  tags: string[]
+}
+export interface MenuItemsData {
+  id: string
+  name: string
+  description: string
+  price: number
+  image: string
+  category: string
+  rating: number
+  reviews: number
+}
 export interface PaginationMeta {
     current_page?: number
     total?: number

@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react"
 import RestaurantCard from "./restaurant-card"
 import { Skeleton } from "@/components/ui/skeleton"
-import { getRestaurants } from "@/lib/api"
-
+import { getRestaurants } from "@/lib/mockData"
 interface Restaurant {
   id: string
   name: string
