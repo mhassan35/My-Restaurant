@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ShoppingCart, Menu, X, Search } from "lucide-react"
+import { ShoppingCart, Menu, X } from "lucide-react"
 import { useCart } from "@/context/cart-context"
 
 export default function Navbar() {
@@ -27,19 +27,7 @@ export default function Navbar() {
               Gastro
             </span>
           </Link>
-
-          {/* Search Bar - Hidden on Mobile */}
-          <div className="hidden md:flex flex-1 max-w-md mx-4 lg:mx-8">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search restaurants..."
-                className="w-full pl-10 pr-4 py-2 rounded-lg bg-muted text-foreground placeholder:text-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-primary transition-smooth"
-              />
-            </div>
-          </div>
-
+          {/* Added buttons of login or signup if you want  */}
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link
