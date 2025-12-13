@@ -40,7 +40,7 @@ export default function Navbar() {
               href="/restaurants"
               className={`${isActive("/restaurants")} hover:text-primary transition-smooth font-medium text-sm lg:text-base`}
             >
-              Restaurants
+              Restaurant
             </Link>
             <Link href="/cart" className="relative group">
               <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 text-foreground group-hover:text-primary transition-smooth" />

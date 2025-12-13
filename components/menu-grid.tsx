@@ -1,18 +1,46 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo, useEffect } from "react"
 import MenuItemComponent from "./menu-item"
-import { mockItems, MenuItem } from "@/lib/mockData"
+import { mockItems } from "@/lib/mockData"
 
-export default function MenuGrid() {
+interface MenuGridProps {
+  searchQuery: string
+  topFilter: string | null
+}
+
+export default function MenuGrid({ searchQuery, topFilter }: MenuGridProps) {
   const [selectedCategory, setSelectedCategory] = useState("all")
 
   const categories = ["all", "appetizer", "pasta", "rice", "seafood", "meat", "dessert"]
 
-  const filteredItems: MenuItem[] =
+  // Base filtering: search + top filter
+  const baseFilteredItems = useMemo(() => {
+  return mockItems.filter((item) => {
+    const itemName = item.name ?? "" // fallback if name is undefined
+    const query = searchQuery ?? "" // fallback if searchQuery is undefined
+    const matchSearch = itemName.toLowerCase().includes(query.toLowerCase())
+    const matchTopFilter = topFilter ? item.category === topFilter : true
+    return matchSearch && matchTopFilter
+  })
+}, [searchQuery, topFilter])
+
+
+  // Apply category filter
+  const finalItems =
     selectedCategory === "all"
-      ? mockItems
-      : mockItems.filter((item) => item.category === selectedCategory)
+      ? baseFilteredItems
+      : baseFilteredItems.filter((item) => item.category === selectedCategory)
+
+  // Reset category if current selection blocks all items
+  useEffect(() => {
+    if (selectedCategory !== "all") {
+      const hasItems = baseFilteredItems.some(
+        (item) => item.category === selectedCategory
+      )
+      if (!hasItems) setSelectedCategory("all")
+    }
+  }, [baseFilteredItems, selectedCategory])
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
@@ -35,11 +63,13 @@ export default function MenuGrid() {
           ))}
         </div>
       </div>
-      {filteredItems.length === 0 ? (
-        <p className="text-center text-muted-foreground">No items available in this category.</p>
+      {finalItems.length === 0 ? (
+        <p className="text-center text-muted-foreground">
+          No items found for your selection.
+        </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => (
+          {finalItems.map((item) => (
             <MenuItemComponent key={item.id} item={item} />
           ))}
         </div>

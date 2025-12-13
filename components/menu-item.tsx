@@ -3,17 +3,7 @@
 import { useState } from "react"
 import { Star, Plus, Minus } from "lucide-react"
 import { useCart } from "@/context/cart-context"
-
-interface MenuItemProps {
-  item: {
-    id: string
-    name: string
-    description: string
-    price: number
-    image: string
-    rating: number
-  }
-}
+import { MenuItemProps } from "@/lib/types"
 
 export default function MenuItem({ item }: MenuItemProps) {
   const [quantity, setQuantity] = useState(0)
@@ -34,24 +24,20 @@ export default function MenuItem({ item }: MenuItemProps) {
 
   return (
     <div className="group h-full rounded-xl sm:rounded-2xl overflow-hidden bg-card border border-border hover:border-primary transition-smooth hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2 cursor-pointer">
-      {/* Image */}
-      <div className="relative h-48 overflow-hidden bg-muted">
-        <img
-          src={item.image || "/placeholder.svg"}
-          alt={item.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        />
-        <div className="absolute top-2 right-2 bg-background/95 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1">
+      <div className="relative h-48 sm:h-64 overflow-hidden bg-muted">
+          <img
+            src={item.image || "/placeholder.svg"}
+            alt={item.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
+          />
+        <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-linear-to-r from-primary to-accent text-primary-foreground px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1 z-20 shadow-lg">
           <Star className="w-3 h-3 fill-accent text-accent" />
           <span className="text-xs font-bold">{item.rating}</span>
         </div>
       </div>
-
-      {/* Content */}
       <div className="p-4">
         <h4 className="font-bold text-foreground text-sm mb-1 line-clamp-1">{item.name}</h4>
         <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{item.description}</p>
-
         <div className="flex items-center justify-between">
           <p className="font-bold text-primary text-lg">${item.price.toFixed(2)}</p>
         </div>

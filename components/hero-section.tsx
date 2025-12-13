@@ -44,11 +44,6 @@ export default function HeroSection() {
                 Order Now
               </button>
             </Link>
-            <Link href="/restaurants">
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 border border-white/40 bg-white/10 text-white rounded-lg font-semibold hover:bg-white/20 transition-smooth active:scale-95 shadow-lg backdrop-blur-sm">
-                Browse Restaurants
-              </button>
-            </Link>
           </div>
         </div>
       </div>

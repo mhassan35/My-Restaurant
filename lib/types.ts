@@ -8,3 +8,13 @@ export interface MenuItem {
   rating: number
 }
 
+export interface MenuItemProps {
+  item: {
+    id: string
+    name: string
+    description: string
+    price: number
+    image: string
+    rating: number
+  }
+}
