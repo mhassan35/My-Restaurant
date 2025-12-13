@@ -4,7 +4,7 @@ import { useState } from "react"
 import MenuItemComponent from "./menu-item"
 import { mockItems, MenuItem } from "@/lib/mockData"
 
-export default function MenuGrid({ restaurantId }: { restaurantId: string }) {
+export default function MenuGrid() {
   const [selectedCategory, setSelectedCategory] = useState("all")
 
   const categories = ["all", "appetizer", "pasta", "rice", "seafood", "meat", "dessert"]
@@ -15,7 +15,7 @@ export default function MenuGrid({ restaurantId }: { restaurantId: string }) {
       : mockItems.filter((item) => item.category === selectedCategory)
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12">
+    <section className="max-w-7xl mx-auto px-4 py-16">
       {/* Category Filter */}
       <div className="mb-12">
         <h2 className="text-3xl font-bold text-foreground mb-6">Our Menu</h2>
@@ -35,14 +35,12 @@ export default function MenuGrid({ restaurantId }: { restaurantId: string }) {
           ))}
         </div>
       </div>
-
-      {/* Menu Items Grid */}
       {filteredItems.length === 0 ? (
         <p className="text-center text-muted-foreground">No items available in this category.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((item) => (
-            <MenuItemComponent key={item.id} item={item} restaurantId={restaurantId} />
+            <MenuItemComponent key={item.id} item={item} />
           ))}
         </div>
       )}

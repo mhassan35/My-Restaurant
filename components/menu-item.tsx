@@ -13,18 +13,16 @@ interface MenuItemProps {
     image: string
     rating: number
   }
-  restaurantId: string
 }
 
-export default function MenuItem({ item, restaurantId }: MenuItemProps) {
+export default function MenuItem({ item }: MenuItemProps) {
   const [quantity, setQuantity] = useState(0)
   const { addItem } = useCart()
 
   const handleAdd = () => {
     if (quantity > 0) {
       addItem({
-        id: `${restaurantId}-${item.id}`,
-        restaurantId,
+        id: `-${item.id}`,
         name: item.name,
         price: item.price,
         quantity: quantity,
@@ -35,7 +33,7 @@ export default function MenuItem({ item, restaurantId }: MenuItemProps) {
   }
 
   return (
-    <div className="rounded-xl border border-border bg-card overflow-hidden hover:border-primary hover:shadow-lg transition-all group">
+    <div className="group h-full rounded-xl sm:rounded-2xl overflow-hidden bg-card border border-border hover:border-primary transition-smooth hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2 cursor-pointer">
       {/* Image */}
       <div className="relative h-48 overflow-hidden bg-muted">
         <img

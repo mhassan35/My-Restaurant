@@ -5,7 +5,6 @@ import { createContext, useContext, useState, useEffect } from "react"
 
 export interface CartItem {
   id: string
-  restaurantId: string
   name: string
   price: number
   quantity: number

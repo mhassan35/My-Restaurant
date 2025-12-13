@@ -1,12 +1,11 @@
 "use client"
 import { useState } from "react"
-import RestaurantGrid from "@/components/restaurant-grid"
 import { Search, Filter } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { buttonData, filters } from "@/lib/mockData"
+import { filters } from "@/lib/mockData"
+import MenuGrid from "@/components/menu-grid"
 
 export default function RestaurantsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null)
   const [open, setOpen] = useState(false)
@@ -16,7 +15,7 @@ export default function RestaurantsPage() {
       {/* HEADER */}
       <section className="bg-linear-to-br from-primary/10 via-secondary/5 to-background border-b border-border py-12">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">Explore Restaurants</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">Explore Restaurant</h1>
           <p className="text-muted-foreground text-lg">
             Discover thousands of restaurants offering great deals and fast delivery
           </p>
@@ -85,32 +84,7 @@ export default function RestaurantsPage() {
           </div>
         </div>
       </section>
-      {/* CATEGORY TABS */}
-      <section className="bg-background py-6 border-b border-border sticky top-40 z-30">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex gap-2 overflow-x-auto pb-2">
-            {buttonData.map((cat) => (
-              <button
-                key={cat.value}
-                onClick={() => setSelectedCategory(cat.value)}
-                className={`px-5 py-2 rounded-full text-sm font-medium ${
-                  selectedCategory === cat.value
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* GRID */}
-      <RestaurantGrid
-        category={selectedCategory}
-        search={searchQuery}
-        activeFilter={selectedFilter}
-      />
+      <MenuGrid />
     </main>
   )
 }
